@@ -11,6 +11,8 @@ Use as a replacement for one of the dynamic DNS services.
 * `curl`
 * `jq`
 
+**Note:** This script uses the ipify.com API to determine your current IP address. If you have privacy concerns about that, other ways of finding your IP are possible. Pull requests welcome!
+
 ## Setup
 
 Enable a domain on cloudflare, and add an `A Record` for the host you want to use:
