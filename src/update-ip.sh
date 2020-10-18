@@ -9,8 +9,8 @@ if [ "$CFAPI_TOKEN" == "" ]; then
     exit 1
 fi
 
-oldip=`dig +short $HOST | tail -n1`
-newip=`curl -s $IPIFY_ENDPOINT`
+oldip=$(dig +short $HOST | tail -n1)
+newip=$(curl -s $IPIFY_ENDPOINT)
 
 if [ "$oldip" == "$newip" ]; then
     echo "IP $oldip unchanged."
