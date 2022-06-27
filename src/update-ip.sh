@@ -3,9 +3,14 @@
 CFAPI_ENDPOINT='https://api.cloudflare.com/client/v4'
 IPIFY_ENDPOINT='https://api.ipify.org'
 
+log() {
+    TIMESTAMP=$(date +'%Y-%m-%d %H:%:%S')
+    echo "[${TIMESTAMP}] $1"
+}
+
 . .env.production
 if [ "$CFAPI_TOKEN" = "" ]; then
-    echo "Error: Environment variables not set."
+    log "Error: Environment variables not set."
     exit 1
 fi
 
@@ -13,7 +18,7 @@ oldip=$(dig +short "$HOST" | tail -n1)
 newip=$(curl -s "$IPIFY_ENDPOINT")
 
 if [ "$oldip" = "$newip" ]; then
-    echo "IP $oldip unchanged."
+    log "IP $oldip unchanged."
     exit 0
 fi
 
@@ -30,9 +35,9 @@ success=$(curl -sX PATCH "$CFAPI_ENDPOINT/zones/$zoneid/dns_records/$recordid" \
      --data "{\"content\":\"$newip\"}" \
      | jq -r '.success')
 if [ "$success" = 'true' ]; then
-    echo "IP updated from $oldip to $newip."
+    log "IP updated from $oldip to $newip."
     exit 0
 else
-    echo "Error updating IP from $oldip to $newip :o"
+    log "Error updating IP from $oldip to $newip :o"
     exit 1
 fi
