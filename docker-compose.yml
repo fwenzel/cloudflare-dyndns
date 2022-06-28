@@ -3,7 +3,6 @@ version: '3'
 services:
   cfdd:
     build: .
-    image: cfdd
     restart: unless-stopped
     env_file: .env.production
     volumes:
