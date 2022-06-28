@@ -4,7 +4,7 @@ CFAPI_ENDPOINT='https://api.cloudflare.com/client/v4'
 IPIFY_ENDPOINT='https://api.ipify.org'
 
 log() {
-    TIMESTAMP=$(date +'%Y-%m-%d %H:%:%S')
+    TIMESTAMP=$(date +'%Y-%m-%d %H:%m:%S')
     echo "[${TIMESTAMP}] $1"
 }
 
