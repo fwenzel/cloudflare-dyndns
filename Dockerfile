@@ -1,5 +1,8 @@
 FROM alpine:latest
 
+# Disable watchtower container updating for this project
+LABEL com.centurylinklabs.watchtower.enable="false"
+
 WORKDIR /opt/cfdd
 
 RUN apk add --no-cache bind-tools curl jq
